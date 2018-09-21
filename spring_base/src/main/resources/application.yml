@@ -1,0 +1,54 @@
+server:
+  servlet:
+    context-path: /
+lv.config.demo:
+  name: lvrongzhuan
+  age: 26
+  objects:
+    - 冷水滩
+    - 小地方
+    - 1900
+  objectMap: {"tt":"xx","dd":"hh"}
+  personPojo:
+    outDate: 2018/08/06
+spring:
+  profiles:
+    active: dev
+  mvc:
+    servlet:
+      load-on-startup: -1
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+#监控配置
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      cors:
+        allow-credentials: false
+        allowed-origins: '*'
+        allowed-headers: '*'
+        allowed-methods: '*'
+      exposure:
+        include: '*'
+#          - health     # 健康检查
+#          - info       # 项目信息
+#          - env        # 环境变量
+#          - metrics    # 项目度量
+#          - refresh    # 刷新配置
+#          - loggers    # 日志级别
+#          - mappings   # 请求接口路径
+#          - beans
+#          - configprops
+#          - status
+#          - httptrace
+#          - httpdump
+#自动配置报告
+#debug: true
+
+

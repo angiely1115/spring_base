@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.johnzon:johnzon-core:1.1.6">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.johnzon/johnzon-core/1.1.6/367e8f362d6fc7f2b42c79dc57ad736dccc01963/johnzon-core-1.1.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.johnzon/johnzon-core/1.1.6/fc1900a132ddc558330f8fe80aac57b672557d5c/johnzon-core-1.1.6-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Profile;
  * modified by:
  */
 @Configuration
-@Profile("test")
+//@Profile("test")
 public class ProfileConfig {
     @Bean("dev_person")
     @Profile("dev")

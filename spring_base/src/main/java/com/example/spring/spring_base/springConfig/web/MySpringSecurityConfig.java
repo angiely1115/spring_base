@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -32,21 +33,35 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/level2/**").hasRole("VIP2")
                 .antMatchers("/level3/**").hasRole("VIP3")
                 .antMatchers("/user/login").permitAll()
-        .antMatchers("*.css").permitAll().antMatchers("*.js").permitAll()
-        .antMatchers("/asserts/**").permitAll()
+                .antMatchers("/asserts/**").permitAll()
                 //配置不拦截监管请求
-                .antMatchers("/actuator/**").permitAll()
+                /*.antMatchers("/actuator/**").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/swagger-resources/**").permitAll()
+                .antMatchers("/images/**").permitAll()
+                .antMatchers("/webjars/**").permitAll()
+                .antMatchers("/v2/api-docs").permitAll()
+                .antMatchers("/configuration/ui").permitAll()
+                .antMatchers("/configuration/security").permitAll()*/
                 //放最后
                 .antMatchers("/**").hasRole("admin").and().logout().logoutSuccessUrl("/user/login")
-                ;
+        ;
         //处理登陆请求
         http.formLogin().loginPage("/user/login").usernameParameter("username").passwordParameter("password")
                 .and().logout().logoutSuccessUrl("/user/login");
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring(). antMatchers("/swagger-ui.html")
+                .antMatchers("/webjars/**")
+                .antMatchers("/v2/**")
+                .antMatchers("/swagger-resources/**");
+    }
+
+    @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication().passwordEncoder(bCryptPasswordEncoder()).withUser("admin").password(bCryptPasswordEncoder().encode("123456")).roles("VIP1","admin");
+        auth.inMemoryAuthentication().passwordEncoder(bCryptPasswordEncoder()).withUser("admin").password(bCryptPasswordEncoder().encode("123456")).roles("VIP1", "admin");
     }
 
 

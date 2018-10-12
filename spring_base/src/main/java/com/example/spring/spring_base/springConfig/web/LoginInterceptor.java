@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @Author: lvrongzhuan
- * @Description: 登陆拦截器
+ * @Description: 登陆拦截器 404页面所有拦截动作也都会执行
  * @Date: 2018/9/5 20:24
  * @Version: 1.0
  * modified by:
@@ -30,11 +30,27 @@ public class LoginInterceptor implements HandlerInterceptor{
         return true;
     }
 
+    /**
+     * 有异常也会执行
+     * @param request
+     * @param response
+     * @param handler
+     * @param modelAndView
+     * @throws Exception
+     */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable ModelAndView modelAndView) throws Exception {
         System.out.println("*************************页面渲染之前执行************************");
     }
 
+    /**
+     * 有异常也会执行,拦截器前置处理器返回false不会执行
+     * @param request
+     * @param response
+     * @param handler
+     * @param ex
+     * @throws Exception
+     */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, @Nullable Exception ex) throws Exception {
         System.out.println("*************************页面渲染之后执行************************");

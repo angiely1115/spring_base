@@ -59,11 +59,11 @@ import javax.servlet.annotation.WebListener;
 public class MyRequestListener implements ServletRequestListener{
     @Override
     public void requestDestroyed(ServletRequestEvent servletRequestEvent) {
-       log.info("请求销毁：{}",servletRequestEvent.getServletRequest().getContentType());
+       log.info("请求销毁：{}",servletRequestEvent.getServletRequest().getLocalAddr());
     }
 
     @Override
     public void requestInitialized(ServletRequestEvent servletRequestEvent) {
-        log.info("请求创建：{}",servletRequestEvent.getServletRequest().getContentType());
+        log.info("请求创建：{}",servletRequestEvent.getServletRequest().getLocalAddr());
     }
 }

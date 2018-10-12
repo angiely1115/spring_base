@@ -2,8 +2,9 @@ package com.example.spring.spring_base.springConfig.listener;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.FrameworkServlet;
-
+@EnableScheduling
 public class MyContextRefreshListener implements ApplicationListener<ContextRefreshedEvent> {
 
 	/**

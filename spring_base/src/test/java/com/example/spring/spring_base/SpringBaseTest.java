@@ -89,8 +89,11 @@ public class SpringBaseTest {
   public void testBeanFactoryPostProcessor(){
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(PostProcessorConfig.class);
         this.printBeans(applicationContext);
+        System.out.println("第一次获取********");
         MyJavaBean myJavaBean = applicationContext.getBean(MyJavaBean.class);
+        System.out.println("最后结果myJavaBean:"+myJavaBean);
 
+        System.out.println("第二次获取********");
         myJavaBean = applicationContext.getBean(MyJavaBean.class);
        /* MyJavaBean myJavaBean = applicationContext.getBean(MyJavaBean.class);
         BeanDefinition beanDefinition = applicationContext.getBeanDefinition("myJavaBean");
@@ -116,4 +119,8 @@ public class SpringBaseTest {
         }
     }
 
+    @Test
+    public void helloJVM01(){
+        System.out.println("jvm类加载情况参数配置 -verbose:class");
+    }
 }

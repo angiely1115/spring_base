@@ -2,6 +2,7 @@ package com.example.spring.spring_base.springConfig;
 
 import com.example.spring.spring_base.beanFactoryPostProcessor.MyBeanFactoryPostProcessor;
 import com.example.spring.spring_base.beanFactoryPostProcessor.MyImportBeanDefinitionRegistrar;
+import com.example.spring.spring_base.beanFactoryPostProcessor.MyInstantiationAwareBeanPostProcessor;
 import com.example.spring.spring_base.beanFactoryPostProcessor.MyJavaBean;
 import com.example.spring.spring_base.beanPostProcessor.MyBeanPostProcessor;
 import org.springframework.context.annotation.*;
@@ -14,11 +15,12 @@ import org.springframework.context.annotation.*;
  * modified by:
  */
 @Configuration
-@Import(MyImportBeanDefinitionRegistrar.class)
+@Import({MyImportBeanDefinitionRegistrar.class,MyBeanFactoryPostProcessor.class, MyInstantiationAwareBeanPostProcessor.class})
 public class PostProcessorConfig {
     @Bean(initMethod="initMethod")
-//    @Lazy //在getBean的执行
-    @Scope(value = "prototype")//如果不是单例 在getBean的执行 获取一个就会执行
+    @Lazy //在getBean的执行
+    //如果不是单例 在getBean的执行 获取一个就会执行 每次获取都会走bean生命周期流程 单例bean只会走一次生命周期流程
+   @Scope(value = "prototype")
     public MyJavaBean myJavaBean(){
         return new MyJavaBean("白素贞","白娘子");
     }

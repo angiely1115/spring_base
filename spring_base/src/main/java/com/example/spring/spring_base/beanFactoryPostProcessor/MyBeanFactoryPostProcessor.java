@@ -6,6 +6,7 @@ import org.springframework.beans.PropertyValue;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
  * modified by:
  */
 @Component
+@ConditionalOnMissingBean(MyBeanFactoryPostProcessor.class)
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor{
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
@@ -24,18 +26,20 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor{
         System.out.println("还没有实例话bean能获取Bean吗》"+myJavaBean);*/
         //获取指定bean的定义
         BeanDefinition beanDefinition = configurableListableBeanFactory.getBeanDefinition("myJavaBean");
-        System.out.println("Scope:"+beanDefinition.getScope());
-        System.out.println("getBeanClassName:"+beanDefinition.getBeanClassName());
-        System.out.println("getDescription:"+beanDefinition.getDescription());
-        System.out.println("getFactoryBeanName:"+beanDefinition.getFactoryBeanName());
-        System.out.println("getResourceDescription:"+beanDefinition.getResourceDescription());
-        MutablePropertyValues mutablePropertyValues = beanDefinition.getPropertyValues();
-        System.out.println("mutablePropertyValues:"+mutablePropertyValues);
-        System.out.println(mutablePropertyValues.getPropertyValue("desc"));
-        mutablePropertyValues.addPropertyValue("desc","增加了age属性 值为1000");
-        PropertyValue propertyValue = mutablePropertyValues.getPropertyValue("desc");
-//        System.out.println(propertyValue.getValue());
+        if(beanDefinition!=null){
+            System.out.println("Scope:"+beanDefinition.getScope());
+            System.out.println("getBeanClassName:"+beanDefinition.getBeanClassName());
+            System.out.println("getDescription:"+beanDefinition.getDescription());
+            System.out.println("getFactoryBeanName:"+beanDefinition.getFactoryBeanName());
+            System.out.println("getResourceDescription:"+beanDefinition.getResourceDescription());
+            MutablePropertyValues mutablePropertyValues = beanDefinition.getPropertyValues();
+            System.out.println("mutablePropertyValues:"+mutablePropertyValues);
+            System.out.println(mutablePropertyValues.getPropertyValue("desc"));
+            mutablePropertyValues.addPropertyValue("desc","增加desc属性值 值为1000");
+          //  PropertyValue propertyValue = mutablePropertyValues.getPropertyValue("desc");
+            //System.out.println(" mutablePropertyValues.getPropertyValue:"+propertyValue.getValue());
 //        myJavaBean.setName("赵雅芝");
 //        beanDefinition.setScope(BeanDefinition.SCOPE_PROTOTYPE); 默认单例
+        }
     }
 }

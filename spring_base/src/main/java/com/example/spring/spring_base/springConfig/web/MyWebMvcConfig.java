@@ -1,16 +1,16 @@
 package com.example.spring.spring_base.springConfig.web;
 
 import com.example.spring.spring_base.component.MyLocaleResolver;
+import com.example.spring.spring_base.springConfig.async.MyAsyncConfigurer;
 import org.hibernate.validator.HibernateValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.AsyncTaskExecutor;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.protobuf.ProtobufHttpMessageConverter;
 import org.springframework.web.servlet.LocaleResolver;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
 import javax.validation.Validation;
 import javax.validation.Validator;
@@ -26,6 +26,8 @@ import java.util.List;
  */
 @Configuration
 public class MyWebMvcConfig implements WebMvcConfigurer{
+    @Autowired
+    private MyAsyncConfigurer myAsyncConfigurer;
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         //注册一个空的controller maping映射
@@ -36,13 +38,23 @@ public class MyWebMvcConfig implements WebMvcConfigurer{
         registry.addViewController("/user/login").setViewName("login");
     }
 
-
+    /**
+     * springmvc异步支持配置
+     * @param configurer
+     */
+    @Override
+    public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
+        //3s超时 对所有异步返回有效果
+        configurer.setDefaultTimeout(3*1000);
+        //设置线程异步线程池 只对WebAsyncTask 异步有效果
+        configurer.setTaskExecutor(myAsyncConfigurer.getAsyncExecutor());
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //拦截和排除 springboot 2.x版本依赖的是spring5 会拦截静态资源
         registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/base","/index","/user/login","/asserts/**","/.html",".js",".css");
+                .excludePathPatterns("/base","/index","/user/login","/asserts/**","/webjars/**","/*.js","/*.css");
     }
 
     //注入自定义的区域语言解析器

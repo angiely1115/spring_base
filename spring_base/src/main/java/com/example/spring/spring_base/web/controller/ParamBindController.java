@@ -2,8 +2,11 @@ package com.example.spring.spring_base.web.controller;
 
 import com.example.spring.spring_base.demo.pojo.PersonPojo;
 import com.example.spring.spring_base.demo.pojo.UserPojo;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -22,6 +25,14 @@ import java.util.Date;
 @RequestMapping("bind/test")
 public class ParamBindController {
 
+    @ModelAttribute
+    public void modelAtus(Model model){
+        System.out.println("**********ModelAttribute***********");
+        model.asMap().put("name2","modelName");
+      /*  PersonPojo personPojo = new PersonPojo();
+        personPojo.setName("modelName");
+        model.asMap().put("personPojo",personPojo);*/
+    }
     /**
      * 接收json格式参数 只能接收一个对象参数 多个会报错不支持
      * @param personPojo
@@ -53,7 +64,8 @@ public class ParamBindController {
      */
     @RequestMapping(value = "testParam")
     @ResponseBody
-    public PersonPojo testParam(PersonPojo personPojo){
+    public PersonPojo testParam(PersonPojo personPojo,@ModelAttribute("name2") String name){
+        personPojo.setName(name);
         return personPojo;
     }
 
@@ -90,5 +102,12 @@ public class ParamBindController {
     @ResponseBody
     public String testMethodValid(@RequestParam String a, @RequestParam String b){
         return a.concat(b);
+    }
+
+    @PostMapping("/accounts")
+    public ResponseEntity<String> handle(HttpEntity<UserPojo> entity) {
+        // ...
+        entity.getBody();
+       return ResponseEntity.ok().body(entity.getBody().toString());
     }
 }

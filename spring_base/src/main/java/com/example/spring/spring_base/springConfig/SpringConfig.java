@@ -5,6 +5,7 @@ import com.example.spring.spring_base.demo.Service.PersonService;
 import com.example.spring.spring_base.demo.pojo.PersonPojo;
 import com.example.spring.spring_base.demo.utils.PersonFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
 
 /**
@@ -63,7 +64,7 @@ import org.springframework.context.annotation.*;
  */
 @Configuration
 @ComponentScan(value = {"com.example.spring.spring_base"})
-@Import({ImportDemo.class,PersonFactoryBean.class})
+//@Import({ImportDemo.class,PersonFactoryBean.class})  不然启动不起来 因为FactoryBean也创建了
 public class SpringConfig {
 
 //    @Autowired

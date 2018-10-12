@@ -1,7 +1,9 @@
 package com.example.spring.spring_base.beanFactoryPostProcessor;
 
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
+import javax.annotation.PostConstruct;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -11,15 +13,16 @@ import java.util.concurrent.TimeUnit;
  * @Version: 1.0
  * modified by:
  */
-public class MyJavaBean implements InitializingBean{
+public class MyJavaBean implements InitializingBean,DisposableBean{
     private String name;
     private String desc;
 
     public MyJavaBean() {
+        System.out.println("MyJavaBean 构造方法无参****");
     }
 
     public MyJavaBean(String name, String desc) {
-        System.out.println("构造方法****");
+        System.out.println("MyJavaBean 构造方法****");
         this.name = name;
         this.desc = desc;
     }
@@ -50,7 +53,12 @@ public class MyJavaBean implements InitializingBean{
     }
 
     public void initMethod(){
-        System.out.println("执行initMethod方法");
+        System.out.println("MyJavaBean 执行initMethod方法");
+    }
+
+    @PostConstruct
+    public void postConstruct(){
+        System.out.println("MyJavaBean 构造方法之后执行*****");
     }
     @Override
     public String toString() {
@@ -58,5 +66,10 @@ public class MyJavaBean implements InitializingBean{
                 "name='" + name + '\'' +
                 ", desc='" + desc + '\'' +
                 '}';
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("MyJavaBean 销毁");
     }
 }

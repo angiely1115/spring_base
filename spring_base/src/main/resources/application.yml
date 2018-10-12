@@ -13,7 +13,7 @@ lv.config.demo:
     outDate: 2018/08/06
 spring:
   profiles:
-    active: dev
+    active: prod
   mvc:
     servlet:
       load-on-startup: -1

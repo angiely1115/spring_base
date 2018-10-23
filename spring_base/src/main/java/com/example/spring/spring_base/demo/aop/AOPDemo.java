@@ -8,7 +8,15 @@ package com.example.spring.spring_base.demo.aop;
  * modified by:
  */
 public class AOPDemo {
-    public void aopDemo(){
+    public String aopDemo(){
         System.out.println("aop简单的目标方法");
+//        throw new RuntimeException("创意");
+        return "aop 动态代理";
     }
+
+    public String aopExceptionDemo(){
+        System.out.println("aop异常简单的目标方法");
+        throw new RuntimeException("创意");
+    }
+
 }

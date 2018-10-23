@@ -1,9 +1,6 @@
 package com.example.spring.spring_base.springConfig;
 
-import com.example.spring.spring_base.beanFactoryPostProcessor.MyBeanFactoryPostProcessor;
-import com.example.spring.spring_base.beanFactoryPostProcessor.MyImportBeanDefinitionRegistrar;
-import com.example.spring.spring_base.beanFactoryPostProcessor.MyInstantiationAwareBeanPostProcessor;
-import com.example.spring.spring_base.beanFactoryPostProcessor.MyJavaBean;
+import com.example.spring.spring_base.beanFactoryPostProcessor.*;
 import com.example.spring.spring_base.beanPostProcessor.MyBeanPostProcessor;
 import org.springframework.context.annotation.*;
 
@@ -33,5 +30,10 @@ public class PostProcessorConfig {
     @Bean
     public MyBeanPostProcessor myBeanPostProcessor(){
         return new MyBeanPostProcessor();
+    }
+
+    @Bean
+    public MyApplicationAware myApplicationAware(){
+        return new MyApplicationAware();
     }
 }

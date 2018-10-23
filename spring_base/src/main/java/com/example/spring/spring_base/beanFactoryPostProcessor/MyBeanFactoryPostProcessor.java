@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor{
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-        System.out.println("调用MyBeanFactoryPostProcessor的postProcessBeanFactory");
+        System.out.println("调用MyBeanFactoryPostProcessor的postProcessBeanFactory"+configurableListableBeanFactory.getBeanNamesIterator());
        /* MyJavaBean myJavaBean = configurableListableBeanFactory.getBean(MyJavaBean.class);
         System.out.println("还没有实例话bean能获取Bean吗》"+myJavaBean);*/
         //获取指定bean的定义

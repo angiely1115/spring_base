@@ -3,6 +3,7 @@ package com.example.spring.spring_base;
 import com.example.spring.spring_base.beanFactoryPostProcessor.MyJavaBean;
 import com.example.spring.spring_base.demo.ImpotDemo.BeanInitDemo;
 import com.example.spring.spring_base.demo.aop.AOPDemo;
+import com.example.spring.spring_base.demo.aop.TransactionAopDemo;
 import com.example.spring.spring_base.demo.pojo.PersonPojo;
 import com.example.spring.spring_base.demo.utils.PersonFactoryBean;
 import com.example.spring.spring_base.springConfig.*;
@@ -108,7 +109,17 @@ public class SpringBaseTest {
       AOPDemo aopDemo = annotationConfigApplicationContext.getBean(AOPDemo.class);
       System.out.println("aopDemo:"+aopDemo);
       aopDemo.aopDemo();
+//      aopDemo.aopExceptionDemo();
+
   }
+
+    @Test
+    public void transactionAopTest(){
+        AnnotationConfigApplicationContext annotationConfigApplicationContext = new AnnotationConfigApplicationContext(AOpConfig.class);
+        TransactionAopDemo transactionAopDemo = annotationConfigApplicationContext.getBean(TransactionAopDemo.class);
+        transactionAopDemo.transactionAop01();
+        transactionAopDemo.notTransactionAop01();
+    }
 
 
 

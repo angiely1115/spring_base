@@ -23,10 +23,26 @@ public class MyInstantiationAwareBeanPostProcessor implements InstantiationAware
     @Nullable
     @Override
     public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
+        if(beanName.equals("myJavaBean")){
+            try {
+                return beanClass.newInstance();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
         System.out.println("前：postProcessBeforeInstantiation:"+beanName);
         return null;
     }
 
+    /**
+     * populateBean 在填充bean时候调用
+     * @param bean
+     * @param beanName
+     * @return
+     * @throws BeansException
+     */
     @Override
     public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
         System.out.println("后：postProcessAfterInstantiation:"+beanName);

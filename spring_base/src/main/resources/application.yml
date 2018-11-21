@@ -24,6 +24,18 @@ rongMysql:
     mapperLocation: classpath:mapper/read/*.xml
     mapperScanner: com.example.spring.spring_base.demo.dao.read
     aliasPackage: com.example.spring.spring_base.demo.entity
+  writeBatchNode:
+    username: caocao
+    password: caocao123
+    url: jdbc:mysql://10.10.8.205:3306/test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
+    executorType: BATCH
+    pool:
+      maxActive: 50
+      connectionInitSql: 'set names utf8mb4;'
+    mybatisConfig: classpath:mapper/mybatis-config.xml
+    mapperLocation: classpath:mapper/write/batch/*.xml
+    mapperScanner: com.example.spring.spring_base.demo.dao.batch.write
+    aliasPackage: com.example.spring.spring_base.demo.entity
 lv.config.demo:
   name: lvrongzhuan
   age: 26
@@ -32,17 +44,30 @@ lv.config.demo:
     - 小地方
     - 1900
   objectMap: {"tt":"xx","dd":"hh"}
-  personPojo:
-    outDate: 2018/08/06
+  personPojoList[0]:
+    name: 哈哈
+    age: 90
+  personPojoList[1]:
+    name: 哈哈2
+    age: 91
+  personPojoMap:
+    personPojo:
+      name: 柏树枝
+      age: 50
+    personPojo2:
+      name: 柏树枝2
+      age: 502
 spring:
   profiles:
-    active: prod
+    active: local
   mvc:
     servlet:
       load-on-startup: -1
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
+  application:
+    name: spring_base_rongly
 #监控配置
 management:
   endpoint:
@@ -73,5 +98,27 @@ management:
 #          - httpdump
 #自动配置报告
 #debug: true
+logging:
+  level:
+   #root: info
+   org.springframework.web: info
+     #org.apache.ibatis: debug
+   #com.example.spring.spring_base.demo.dao: info
+   jdbc:
+    sqltiming: WARN #包含 SQL 语句实际的执行时间
+    audit: 'OFF' # 	除了 ResultSet 之外的所有JDBC调用信息，篇幅较长
+    resultset: 'OFF' #包含 ResultSet 的信息，输出篇幅较长
+    connection: 'info' #连接信息
+    sqlonly: 'info' #仅仅记录 SQL 语句，会将占位符替换为实际的参数
+    mmm:
+      hh: info
+    #resultsettable: 'OFF'
+log4jdbc.sqltiming:
+  warn.threshold: 300   # 300ms 会打印warn级别的日志
+  error.threshold: 500  # 500ms 会打印error级别的日志
+after_datasource: com.example.spring.spring_base.springConfig.jdbc.MysqlDataSourceAutoConfiguration
+rongly.elastic.job: # elasticjob 配置
+  serverList: 10.10.3.65:2181,10.10.3.66:2181,10.10.3.67:2181
+  namespace: jobs/${spring.application.name} # 默认配置不用更改，或者不用配置
 
 

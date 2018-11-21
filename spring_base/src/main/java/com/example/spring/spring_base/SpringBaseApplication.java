@@ -1,5 +1,6 @@
 package com.example.spring.spring_base;
 
+import com.rongly.framework.autoconfiguer.elasticJob.EnableElasticJob;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -12,6 +13,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 //开启异步
 @EnableAsync
 @ServletComponentScan
+@EnableElasticJob
 public class SpringBaseApplication extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {

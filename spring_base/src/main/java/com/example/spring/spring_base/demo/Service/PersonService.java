@@ -7,6 +7,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.Null;
 import java.util.List;
@@ -22,14 +23,24 @@ import java.util.List;
 public class PersonService {
     @Autowired
     private UserDao userDao;
-
+    /**
+     *加上只读事务后 可以使用mybatis一级缓存
+     */
+    @Transactional(value = "readNodeTx",readOnly=true)
     public UserEntity querUserById(Long id){
+        userDao.selectUserById(id);
         return userDao.selectUserById(id);
     }
-
+    @Transactional(value = "readNodeTx",readOnly=true)
     public MybatisPageValue<UserEntity> queryUserPage(int pageNum, int pageSize){
+        this.querUserById(1L);
+        this.oneCache(1L);
         PageHelper.startPage(pageNum,pageSize);
         List<UserEntity> userEntities = userDao.queryUserPage();
         return new MybatisPageValue(userEntities);
+    }
+
+    public void oneCache(long id){
+        this.querUserById(id);
     }
 }

@@ -63,15 +63,15 @@ import org.springframework.context.annotation.*;
  * 		bean赋值，注入其他组件，@Autowired，生命周期注解功能，@Async,xxx BeanPostProcessor;
  */
 @Configuration
-@ComponentScan(value = {"com.example.spring.spring_base"})
+//@ComponentScan(value = {"com.example.spring.spring_base"})
 //@Import({ImportDemo.class,PersonFactoryBean.class})  不然启动不起来 因为FactoryBean也创建了
 public class SpringConfig {
 
 //    @Autowired
     private PersonPojo personService;
 
-    public SpringConfig(PersonPojo personService) {
-        this.personService = personService;
+    public SpringConfig() {
+//        this.personService = personService;
         System.out.println("配置文件构造方法执行>>>>>>>>>>>>>>"+personService);
     }
 

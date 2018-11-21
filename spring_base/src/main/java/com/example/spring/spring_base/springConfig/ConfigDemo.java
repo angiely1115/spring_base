@@ -27,4 +27,6 @@ public class ConfigDemo {
     private Object[] objects;
     private Map<String,Object> objectMap;
     private PersonPojo personPojo;
+    private List<PersonPojo> personPojoList;
+    private Map<String,PersonPojo> personPojoMap;
 }

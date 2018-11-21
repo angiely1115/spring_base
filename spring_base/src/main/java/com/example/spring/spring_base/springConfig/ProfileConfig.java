@@ -1,6 +1,8 @@
 package com.example.spring.spring_base.springConfig;
 
+import com.example.spring.spring_base.demo.job.MyJobDemo;
 import com.example.spring.spring_base.demo.pojo.PersonPojo;
+import com.rongly.framework.autoconfiguer.elasticJob.EnableElasticJob;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -14,7 +16,13 @@ import org.springframework.context.annotation.Profile;
  */
 @Configuration
 //@Profile("test")
+@EnableElasticJob
 public class ProfileConfig {
+
+    @Bean
+    public MyJobDemo myJobDemo(){
+        return new MyJobDemo();
+    }
     @Bean("dev_person")
     @Profile("dev")
     public PersonPojo personPojoDev(){

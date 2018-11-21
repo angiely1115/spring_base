@@ -94,7 +94,6 @@ public class MybatisAutoConfiguration extends SpringBaseHandle implements
     if (configuration == null && !StringUtils.hasText(mysqlMybatisConfig.getMybatisConfig())) {
       configuration = new org.apache.ibatis.session.Configuration();
     }
-
     sqlSessionFactoryBean.setConfiguration(configuration);
     Optional.ofNullable(mysqlMybatisConfig.getConfigurationProperties())
         .ifPresent(sqlSessionFactoryBean::setConfigurationProperties);
@@ -112,7 +111,7 @@ public class MybatisAutoConfiguration extends SpringBaseHandle implements
         log.error("sqlSessionFactoryBean get object is null");
         return null;
       }
-      register(configurableListableBeanFactory, sqlSessionFactory, prefixName + "SessionFactory",
+      register(configurableListableBeanFactory, sqlSessionFactoryBean, prefixName + "SessionFactory",
           prefixName + "Sf");
 
       if (!Strings.isNullOrEmpty(mysqlMybatisConfig.getMapperScanner())) {

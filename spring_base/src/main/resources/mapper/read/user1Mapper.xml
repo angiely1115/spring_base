@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.spring.spring_base.demo.dao.read.UserDao">
+    <resultMap id="BaseResultMap" type="com.example.spring.spring_base.demo.entity.UserEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="age" jdbcType="BIGINT" property="age"/>
+    </resultMap>
+
+    <!--嵌套结果 1:1-->
+    <resultMap id="BaseResultMap2" type="com.example.spring.spring_base.demo.entity.UserEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="age" jdbcType="BIGINT" property="age"/>
+        <association property="userAccount" javaType="com.example.spring.spring_base.demo.entity.UserAccount">
+            <result property="accountName" column="account_name"></result>
+            <result property="amt" column="amt"></result>
+        </association>
+    </resultMap>
+
+    <resultMap id="BaseResultMap3" type="com.example.spring.spring_base.demo.entity.UserEntity">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="age" jdbcType="BIGINT" property="age"/>
+        <collection property="rolesEntityList"
+                    ofType="com.example.spring.spring_base.demo.entity.RolesEntity"
+          fetchType="eager"><!--延迟加载 和立即加载 跟全局配置无关-->
+            <result property="roleName" column="role_name"></result>
+            <result property="userId" column="user_id"></result>
+            <result property="roleId" column="role_id"></result>
+        </collection>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name, age
+  </sql>
+
+    <select id="selectUserById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where id = #{id}
+    </select>
+    <select id="selectUserByNameAndAge" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+        where name = #{name} and age=#{age}
+    </select>
+    <select id="queryUserPage" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user
+    </select>
+
+    <select id="queryUserByLikeName" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        <bind name="like_name" value="'%'+name+'%'"></bind>
+        from user
+        WHERE
+        name like #{like_name}
+    </select>
+
+    <select id="queryUserAccount" resultMap="BaseResultMap2">
+        SELECT u.id,u.name,u.age,r.account_name,r.amt FROM `user` u , account r
+        WHERE u.id = r.user_id
+        AND
+        u.id =#{userId}
+    </select>
+
+    <select id="queryUserRoles" resultMap="BaseResultMap3">
+        SELECT u.id,u.name,u.age,r.role_name,r.role_id,r.user_id FROM `user` u , roles r
+        WHERE u.id = r.user_id
+        AND
+        u.id =#{userId}
+    </select>
+</mapper>

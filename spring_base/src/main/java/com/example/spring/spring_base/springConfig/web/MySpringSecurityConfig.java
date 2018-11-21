@@ -34,6 +34,7 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/level3/**").hasRole("VIP3")
                 .antMatchers("/user/login").permitAll()
                 .antMatchers("/asserts/**").permitAll()
+                .antMatchers("/person/**").permitAll()
                 //配置不拦截监管请求
                 /*.antMatchers("/actuator/**").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()

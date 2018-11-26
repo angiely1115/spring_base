@@ -7,7 +7,7 @@ rongMysql:
     password: caocao123
     url: jdbc:mysql://10.10.8.209:3306/test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
     pool:
-      maxActive: 30
+      maximumPoolSize: 30
       connectionInitSql: 'set names utf8mb4;'
     mybatisConfig: classpath:mapper/mybatis-config.xml
     mapperLocation: classpath:mapper/write/*.xml
@@ -18,7 +18,7 @@ rongMysql:
     password: caocao123
     url: jdbc:mysql://10.10.8.205:3306/test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
     pool:
-      maxActive: 50
+      maximumPoolSize: 50
       connectionInitSql: 'set names utf8mb4;'
     mybatisConfig: classpath:mapper/mybatis-config.xml
     mapperLocation: classpath:mapper/read/*.xml

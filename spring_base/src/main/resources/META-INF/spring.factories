@@ -7,3 +7,5 @@ com.example.spring.spring_base.springConfig.listener.ApplicationStartedEventList
 com.example.spring.spring_base.springConfig.listener.MyContextRefreshListener
 org.springframework.boot.SpringApplicationRunListener=\
 com.example.spring.spring_base.springConfig.listener.HelloSpringApplicationRunListener
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.example.spring.spring_base.beanPostProcessor.MyEnvironmentPostProcessor

@@ -29,4 +29,6 @@ public class ConfigDemo {
     private PersonPojo personPojo;
     private List<PersonPojo> personPojoList;
     private Map<String,PersonPojo> personPojoMap;
+    private Integer env1;
+    private String env2;
 }

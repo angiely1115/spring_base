@@ -30,7 +30,7 @@ public class SpringMybatisTest {
     private UserDao userDao2;
     @Autowired
     private RolesDao rolesDao;
-    @Autowired
+    @Autowired(required = false)
     private UserBatchDao userBatchDao;
     @Test
     public void muliParamsTest(){

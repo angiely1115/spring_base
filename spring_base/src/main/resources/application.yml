@@ -18,23 +18,23 @@ rongMysql:
     password: caocao123
     url: jdbc:mysql://10.10.8.205:3306/test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
     pool:
-      maximumPoolSize: 50
+      maximumPoolSize: 10
       connectionInitSql: 'set names utf8mb4;'
     mybatisConfig: classpath:mapper/mybatis-config.xml
     mapperLocation: classpath:mapper/read/*.xml
     mapperScanner: com.example.spring.spring_base.demo.dao.read
     aliasPackage: com.example.spring.spring_base.demo.entity
-  writeBatchNode:
+  readNode2:
     username: caocao
     password: caocao123
     url: jdbc:mysql://10.10.8.205:3306/test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
-    executorType: BATCH
+#    executorType: BATCH
     pool:
-      maxActive: 50
+      maxActive: 20
       connectionInitSql: 'set names utf8mb4;'
     mybatisConfig: classpath:mapper/mybatis-config.xml
-    mapperLocation: classpath:mapper/write/batch/*.xml
-    mapperScanner: com.example.spring.spring_base.demo.dao.batch.write
+    mapperLocation: classpath:mapper/read/*.xml
+    mapperScanner: com.example.spring.spring_base.demo.dao.read
     aliasPackage: com.example.spring.spring_base.demo.entity
 lv.config.demo:
   name: lvrongzhuan
@@ -57,6 +57,14 @@ lv.config.demo:
     personPojo2:
       name: 柏树枝2
       age: 502
+  map-list:
+   - map1:
+       name: map1
+       age: 100
+   - map2:
+       name: map2
+       age: 101
+
 spring:
   profiles:
     active: local
@@ -120,5 +128,4 @@ after_datasource: com.example.spring.spring_base.springConfig.jdbc.MysqlDataSour
 rongly.elastic.job: # elasticjob 配置
   serverList: 10.10.3.65:2181,10.10.3.66:2181,10.10.3.67:2181
   namespace: jobs/${spring.application.name} # 默认配置不用更改，或者不用配置
-
 

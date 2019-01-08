@@ -144,11 +144,11 @@
 			<artifactId>bootstrap</artifactId>
 			<version>4.0.0</version>
 		</dependency>
-		<dependency>
+	<!--	<dependency>
 			<groupId>com.baidu.fsg</groupId>
 			<artifactId>uid-generator</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
+		</dependency>-->
 	</dependencies>
 
 	<build>

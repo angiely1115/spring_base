@@ -43,7 +43,7 @@ lv.config.demo:
     - 冷水滩
     - 小地方
     - 1900
-  objectMap: {"tt":"xx","dd":"hh"}
+  objectMap: {"tt":"xx","dd":"hh","****":"/ange/**"}
   personPojoList[0]:
     name: 哈哈
     age: 90

@@ -14,6 +14,12 @@ public class AOPDemo {
         return "aop 动态代理";
     }
 
+    public String aopDemo2(){
+        System.out.println("aop2简单的目标方法");
+//        throw new RuntimeException("创意");
+        return "aop2 动态代理";
+    }
+
     public String aopExceptionDemo(){
         System.out.println("aop异常简单的目标方法");
         throw new RuntimeException("创意");

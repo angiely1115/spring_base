@@ -4,7 +4,8 @@ org.springframework.context.ApplicationListener=\
 com.example.spring.spring_base.springConfig.listener.ApplicationPreparedEventListener,\
 com.example.spring.spring_base.springConfig.listener.ApplicationReadyEventListener,\
 com.example.spring.spring_base.springConfig.listener.ApplicationStartedEventListener,\
-com.example.spring.spring_base.springConfig.listener.MyContextRefreshListener
+com.example.spring.spring_base.springConfig.listener.MyContextRefreshListener,\
+com.example.spring.spring_base.springConfig.listener.SpringApplicationListener
 org.springframework.boot.SpringApplicationRunListener=\
 com.example.spring.spring_base.springConfig.listener.HelloSpringApplicationRunListener
 org.springframework.boot.env.EnvironmentPostProcessor=\

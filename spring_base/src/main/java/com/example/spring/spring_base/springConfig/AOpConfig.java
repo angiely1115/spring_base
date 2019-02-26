@@ -1,5 +1,6 @@
 package com.example.spring.spring_base.springConfig;
 
+import com.example.spring.spring_base.beanPostProcessor.MyInstantiationAwareBeanPortProcessor;
 import com.example.spring.spring_base.demo.aop.AOPAspect;
 import com.example.spring.spring_base.demo.aop.AOPAspect2;
 import com.example.spring.spring_base.demo.aop.AOPDemo;
@@ -7,6 +8,7 @@ import com.example.spring.spring_base.demo.aop.TransactionAopDemo;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 //开启aop编程 在用springboot注解启动可以不用加 但是单独使用要加
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
+@Import(MyInstantiationAwareBeanPortProcessor.class)
 public class AOpConfig {
     @Bean
     public AOPDemo aopDemo(){

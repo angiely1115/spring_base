@@ -1,0 +1,151 @@
+springboot启动过程分析：
+SpringApplication.run(Class class,String...agrs) 启动springboot入口
+分为两大步：
+第一大步：
+初始化SpringApplication
+//初始化资源加载 这里是null
+this.resourceLoader = resourceLoader;
+Assert.notNull(primarySources, "PrimarySources must not be null");
+初始化主要加载类资源集合
+this.primarySources = new LinkedHashSet<>(Arrays.asList(primarySources));
+//推断当前web应用类型 三种 不是web应用类型 响应式web应用类型 servlet web应用类型
+this.webApplicationType = deduceWebApplicationType();
+//从META-INF文件夹下的spring.factorices文件中获取ApplicationContextInitializer（当前上下文初始器）的配置
+setInitializers((Collection) getSpringFactoriesInstances(
+ApplicationContextInitializer.class));
+//从META-INF文件夹下的spring.factorices文件中获取ApplicationListener（监听器）的配置
+setListeners((Collection) getSpringFactoriesInstances(ApplicationListener.class));
+//推断该应用的主入口类 原理
+通过构建一个运行时异常栈，然后遍历这个异常栈，获取异常栈中方法为main 就是该应用主入口类
+疑问 一般主入口类已经传进来为什么不直接使用 而是通过这样的方式呢？
+StackTraceElement[] stackTrace = new RuntimeException().getStackTrace();
+for (StackTraceElement stackTraceElement : stackTrace) {
+            if ("main".equals(stackTraceElement.getMethodName())) {
+                try {
+                    System.out.println(Class.forName(stackTraceElement.getClassName()));
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+this.mainApplicationClass = deduceMainApplicationClass();
+
+第二大步：
+run过程：
+	public ConfigurableApplicationContext run(String... args) {
+	    //创建一个监听
+		StopWatch stopWatch = new StopWatch();
+		//记录开始时间
+		stopWatch.start();
+		ConfigurableApplicationContext context = null;
+		Collection<SpringBootExceptionReporter> exceptionReporters = new ArrayList<>();
+		configureHeadlessProperty();
+		//获取所有的监听器
+		SpringApplicationRunListeners listeners = getRunListeners(args);
+	   //执行开始监听
+		listeners.starting();
+		try {
+		  //创建默认应用参数
+			ApplicationArguments applicationArguments = new DefaultApplicationArguments(
+					args);
+
+		  //根据监听器和默认应用参数来准备spring 应用环境
+			ConfigurableEnvironment environment = prepareEnvironment(listeners,
+					applicationArguments);
+		//根据当前应用的环境配置需要忽略的bean
+			configureIgnoreBeanInfo(environment);
+			//创建banner信息并打印
+			Banner printedBanner = printBanner(environment);
+			//创建当前应用的上下文
+			context = createApplicationContext();
+			   步骤：根据当前web应用类型 返回创建什么样上下文 是这个AnnotationConfigServletWebServerApplicationContext
+			   protected ConfigurableApplicationContext createApplicationContext() {
+               		Class<?> contextClass = this.applicationContextClass;
+               		if (contextClass == null) {
+               			try {
+               				switch (this.webApplicationType) {
+               				case SERVLET:
+               					contextClass = Class.forName(DEFAULT_WEB_CONTEXT_CLASS);
+               					break;
+               				case REACTIVE:
+               					contextClass = Class.forName(DEFAULT_REACTIVE_WEB_CONTEXT_CLASS);
+               					break;
+               				default:
+               					contextClass = Class.forName(DEFAULT_CONTEXT_CLASS);
+               				}
+               			}
+               			catch (ClassNotFoundException ex) {
+               				throw new IllegalStateException(
+               						"Unable create a default ApplicationContext, "
+               								+ "please specify an ApplicationContextClass",
+               						ex);
+               			}
+               		}
+               		return (ConfigurableApplicationContext) BeanUtils.instantiateClass(contextClass);
+			//从META-INF中获取配置的异常报告器实例
+			exceptionReporters = getSpringFactoriesInstances(
+					SpringBootExceptionReporter.class,
+					new Class[] { ConfigurableApplicationContext.class }, context);
+			//准备上下文
+			prepareContext(context, environment, listeners, applicationArguments,printedBanner);
+					private void prepareContext(ConfigurableApplicationContext context,
+                    			ConfigurableEnvironment environment, SpringApplicationRunListeners listeners,
+                    			ApplicationArguments applicationArguments, Banner printedBanner) {
+                    			}
+                    		//为上下设置环境变量
+                    		context.setEnvironment(environment);
+                    		postProcessApplicationContext(context);
+                    		//执行所有的initializer接口实现类的initializ方法
+                    		applyInitializers(context);
+                    		//执行上下文准备监听事件
+                    		listeners.contextPrepared(context);
+                    		if (this.logStartupInfo) {
+                    			logStartupInfo(context.getParent() == null);
+                    			logStartupProfileInfo(context);
+                    		}
+
+                    		// Add boot specific singleton beans
+                    		context.getBeanFactory().registerSingleton("springApplicationArguments",
+                    				applicationArguments);
+                    		if (printedBanner != null) {
+                    			context.getBeanFactory().registerSingleton("springBootBanner", printedBanner);
+                    		}
+
+                    		// Load the sources
+                    		Set<Object> sources = getAllSources();
+                    		Assert.notEmpty(sources, "Sources must not be empty");
+                    		load(context, sources.toArray(new Object[0]));
+                    		//执行上下文加载监听事件
+                    		listeners.contextLoaded(context);
+                    	}
+			//刷新当前容器 这里就进入了spring refresh方法了 并且重写了onrefresh()方法 创建webserver 启动Tomcat
+			refreshContext(context);
+
+			//刷新 是一个空方法
+			afterRefresh(context, applicationArguments);
+			//停止计时
+			stopWatch.stop();
+			if (this.logStartupInfo) {
+				new StartupInfoLogger(this.mainApplicationClass)
+						.logStarted(getApplicationLog(), stopWatch);
+			}
+			//执行springboot已经启动的监听事件
+			listeners.started(context);
+			//回调Runner接口 先执行ApplicationRunner接口的实现 再执行commentLineRunner接口的实现
+			callRunners(context, applicationArguments);
+		}
+		catch (Throwable ex) {
+			handleRunFailure(context, ex, exceptionReporters, listeners);
+			throw new IllegalStateException(ex);
+		}
+		try {
+		//执行springboot 已经运行的监听事件
+			listeners.running(context);
+		}
+		catch (Throwable ex) {
+			handleRunFailure(context, ex, exceptionReporters, null);
+			throw new IllegalStateException(ex);
+		}
+		//返回当前上下文
+		return context;
+	}

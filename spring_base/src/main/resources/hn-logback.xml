@@ -25,10 +25,10 @@
     </appender>
     <!-- 按照每天生成日志文件 -->
     <appender name="INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
-      <file>E:\\logs/${LOG_FILE}/${LOG_FILE}.log</file>
+      <file>D:\\logs/${LOG_FILE}/${LOG_FILE}.log</file>
       <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
         <!--日志文件输出的文件名 -->
-        <FileNamePattern>E:\\logs/${LOG_FILE}/%d{yyyy-MM-dd, aux}/${LOG_FILE}_%d{HH}.log</FileNamePattern>
+        <FileNamePattern>D:\\logs/${LOG_FILE}/%d{yyyy-MM-dd, aux}/${LOG_FILE}_%d{HH}.log</FileNamePattern>
         <!--日志文件保留天数 -->
         <MaxHistory>1440</MaxHistory>
       </rollingPolicy>
@@ -40,9 +40,9 @@
     </appender>
 
     <appender name="ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
-      <file>E:\\logs/${LOG_FILE}/${LOG_FILE}_err.log</file>
+      <file>D:\\logs/${LOG_FILE}/${LOG_FILE}_err.log</file>
       <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-        <fileNamePattern>E:\\logs/${LOG_FILE}/%d{yyyy-MM-dd, aux}/${LOG_FILE}_%d{HH}_err.log</fileNamePattern>
+        <fileNamePattern>D:\\logs/${LOG_FILE}/%d{yyyy-MM-dd, aux}/${LOG_FILE}_%d{HH}_err.log</fileNamePattern>
       </rollingPolicy>
       <append>true</append>
       <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">

@@ -1,0 +1,67 @@
+AbstractApplicationContext:
+//刷新容器
+ refresh(){
+ 第一步：
+ prepareRefresh();
+ 刷新容器前的准备工作：记录容器的启动时间和标识，以及执行属性源的初始化
+ 第二步：
+ ObtainFreshBeanFactory()
+ 此步骤获得一个新的Bean工厂，在这步里面就做了对bean的加载、解析和注册到beanDefinitions中 使用的map存储 。
+ 第三步：
+ prepareBeanFactory()
+ 准备BeanFactory，设置类加载器表达式解析器和以及添加一些后置处理器和属性资源注册 并忽略一些依赖关系
+
+ 第四步：
+ postProcessBeanFactory()
+ 添加BeanFactory后置处理器，是一个模板方法，由子类实现
+
+ 第五部:
+ invokeBeanFactoryPostProcessors()
+ 执行实现了BeanFactoryPostProcessor接口的类
+ postProcessBeanFactory由一个子类是BeanDefinitionRegisterPostProcessor
+ 执行过程
+ 先执行实现了BeanDefinitionRegisterPostProcessor接口的类
+ 按照实现了priorityOrder 接口和order接口注解的顺序执行
+ 然后再执行实现了BeanFactoryPostProcessor接口的类
+ 也是按照实现了priorityOrder 接口和order接口注解的顺序执行
+ 第六步：
+ registerBeanPostProcessors()
+ 注册BeanPostProcessor的后置处理器（bean 实例化之前后和初始化之前后的回调）
+ BeanPostProcessor的子接口比较重要的有
+  BeanPostProcessor
+    InstantiationAwareBeanPostProcessor
+      AbstractAutoProxyCreator 用来创建代理类对象的 比较重要
+ 第7步：
+ initMessageSource()
+ 初始化资源信息，包括国际化、
+ 第8步：
+ initApplicationEventMulticaster()
+ 初始化该上下文的事件广播器
+ 第9步：
+ onRefresh()
+ 模板方法 交由子类实现
+ 第10步：
+ registerListener();
+ 注册事件监听器
+ 第11步：
+ finishBeanFactoryinitialzation()
+ 完成所有剩余单例的并且不是懒加载bean的初始化
+ 第12步：
+ finishRefresh();
+ 最后一步，完成容器刷新 发布相应的事件
+ 做了一些事情：
+ 1.清理缓存
+ 2.初始化当前上下文的生命周期
+ 3.发布容器刷新事件
+
+
+
+
+
+
+
+
+
+
+
+ }

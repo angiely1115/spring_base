@@ -5,6 +5,8 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 import org.apache.ibatis.executor.resultset.DefaultResultSetHandler;
 import org.apache.ibatis.executor.resultset.ResultSetHandler;
 import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.SystemMetaObject;
 
 import java.sql.Statement;
 import java.util.Properties;
@@ -29,8 +31,12 @@ public class MyPluginDemo implements Interceptor{
     public Object intercept(Invocation invocation) throws Throwable {
         //获取目标对象
         DefaultResultSetHandler defaultResultSetHandler = (DefaultResultSetHandler) invocation.getTarget();
+        System.out.println("拦截的目标执行对象："+defaultResultSetHandler);
         Object[] objects = invocation.getArgs();
         Statement statements = (Statement) objects[0];
+        //获取目标对象的元数据
+        MetaObject metaObject = SystemMetaObject.forObject(defaultResultSetHandler);
+        System.out.println(metaObject);
         //继续执行目标方法
         return invocation.proceed();
     }
@@ -38,7 +44,7 @@ public class MyPluginDemo implements Interceptor{
     @Override
     public Object plugin(Object target) {
         /**
-         * 包装目标对象 生成代理类
+         * 包装目标对象 生成目标对象的代理类
          */
         System.out.println("要代理的目标对象>>>>>>"+target);
         return Plugin.wrap(target,this);
@@ -46,6 +52,6 @@ public class MyPluginDemo implements Interceptor{
 
     @Override
     public void setProperties(Properties properties) {
-        System.out.println("设置要配置的属性，全局配置");
+        System.out.println("设置要配置的属性，全局配置:"+properties);
     }
 }

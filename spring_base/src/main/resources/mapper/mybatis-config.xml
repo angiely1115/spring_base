@@ -33,6 +33,9 @@
             <property name="supportMethodsArguments" value="false"/>
             <property name="closeConn" value="true"/>
         </plugin>
-        <plugin interceptor="com.example.spring.spring_base.springConfig.mybatis.MyPluginDemo"></plugin>
+        <plugin interceptor="com.example.spring.spring_base.springConfig.mybatis.MyPluginDemo">
+            <property name="rong-name" value="吕荣砖"></property>
+            <property name="rong-love" value="白素贞"></property>
+        </plugin>
     </plugins>
 </configuration>

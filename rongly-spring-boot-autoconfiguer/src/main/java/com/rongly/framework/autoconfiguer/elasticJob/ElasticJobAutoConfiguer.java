@@ -54,12 +54,14 @@ import java.util.stream.Stream;
 public class ElasticJobAutoConfiguer implements InitializingBean{
     private static final String cron_pre = "${";
     private static final String cron_end = "}";
-    @Autowired
     private ElasticJobProperties elasticJobProperties;
 
-    @Autowired
     private ApplicationContext applicationContext;
 
+    public ElasticJobAutoConfiguer(ElasticJobProperties elasticJobProperties, ApplicationContext applicationContext) {
+        this.elasticJobProperties = elasticJobProperties;
+        this.applicationContext = applicationContext;
+    }
 
     @Override
     public void afterPropertiesSet() throws Exception {

@@ -2,7 +2,6 @@ package com.example.spring.spring_base.demo.controller;
 
 import com.example.spring.spring_base.demo.Service.PersonService;
 import com.example.spring.spring_base.demo.entity.UserEntity;
-import com.example.spring.spring_base.springConfig.mybatis.MybatisPageValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +30,4 @@ public class PersonController {
         return personService.querUserById(id);
     }
 
-    @GetMapping("query/page/{pageNum}/{pageSize}")
-    public MybatisPageValue<UserEntity> queryPage(@PathVariable("pageNum") int pageNum,@PathVariable("pageSize") int pageSize){
-        return personService.queryUserPage(pageNum,pageSize);
-    }
 }

@@ -5,7 +5,6 @@ import com.example.spring.spring_base.demo.aop.AOPDemo;
 import com.example.spring.spring_base.springConfig.async.MyAsyncConfigurer;
 import com.example.spring.spring_base.springConfig.listener.MyEvent;
 import com.rongly.framework.autoconfiguer.demo.DemoStarter;
-import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -34,7 +33,6 @@ import java.util.function.Supplier;
  */
 @RestController
 @Slf4j
-@Api(description = "综合")
 public class DemoStarterController {
     @Autowired
     private DemoStarter demoStarter;

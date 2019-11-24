@@ -1,41 +1,7 @@
 server:
   servlet:
     context-path: /
-rongMysql:
-  writeNode:
-    username: caocao
-    password: caocao123
-    url: jdbc:mysql://10.10.8.209:3306/test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
-    pool:
-      maximumPoolSize: 30
-      connectionInitSql: 'set names utf8mb4;'
-    mybatisConfig: classpath:mapper/mybatis-config.xml
-    mapperLocation: classpath:mapper/write/*.xml
-    mapperScanner: com.example.spring.spring_base.demo.dao.write
-    aliasPackage: com.example.spring.spring_base.demo.entity
-  readNode:
-    username: caocao
-    password: caocao123
-    url: jdbc:mysql://10.10.8.205:3306/test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
-    pool:
-      maximumPoolSize: 10
-      connectionInitSql: 'set names utf8mb4;'
-    mybatisConfig: classpath:mapper/mybatis-config.xml
-    mapperLocation: classpath:mapper/read/*.xml
-    mapperScanner: com.example.spring.spring_base.demo.dao.read
-    aliasPackage: com.example.spring.spring_base.demo.entity
-  readNode2:
-    username: caocao
-    password: caocao123
-    url: jdbc:mysql://10.10.8.205:3306/test?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false
-#    executorType: BATCH
-    pool:
-      maxActive: 20
-      connectionInitSql: 'set names utf8mb4;'
-    mybatisConfig: classpath:mapper/mybatis-config.xml
-    mapperLocation: classpath:mapper/read/*.xml
-    mapperScanner: com.example.spring.spring_base.demo.dao.read
-    aliasPackage: com.example.spring.spring_base.demo.entity
+  port: 8888
 lv.config.demo:
   name: lvrongzhuan
   age: 26
@@ -126,6 +92,6 @@ log4jdbc.sqltiming:
   error.threshold: 500  # 500ms 会打印error级别的日志
 after_datasource: com.example.spring.spring_base.springConfig.jdbc.MysqlDataSourceAutoConfiguration
 rongly.elastic.job: # elasticjob 配置
-  serverList: 10.10.3.65:2181,10.10.3.66:2181,10.10.3.67:2181
+  serverList: 47.95.120.66:2181,47.95.120.66:2182,47.95.120.66:2183
   namespace: jobs/${spring.application.name} # 默认配置不用更改，或者不用配置
 

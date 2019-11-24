@@ -7,14 +7,18 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class})
 //开启异步
 @EnableAsync
-@ServletComponentScan
+//@ServletComponentScan
 @EnableElasticJob
-public class SpringBaseApplication extends SpringBootServletInitializer{
+//extends SpringBootServletInitializer
+// 抛异常自动重试
+@EnableRetry
+public class SpringBaseApplication {
 
 	public static void main(String[] args) {
 		SpringApplication springApplication = new SpringApplication(SpringBaseApplication.class);

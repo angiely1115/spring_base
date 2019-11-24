@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-boot-2.0-samples/traditional-web-sample" />
+    <file type="web" url="file://$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-framework-samples/spring-webmvc-3.2.x-sample" />
+    <file type="web" url="file://$PROJECT_DIR$/../../thinking-in-spring-boot-samples/traditional-samples/servlet-sample" />
+  </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/spring_base/pom.xml" />
         <option value="$PROJECT_DIR$/rongly-spring-boot-autoconfiguer/pom.xml" />
         <option value="$PROJECT_DIR$/rongly-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/../../thinking-in-spring-boot-samples/pom.xml" />
       </list>
     </option>
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
 </project>

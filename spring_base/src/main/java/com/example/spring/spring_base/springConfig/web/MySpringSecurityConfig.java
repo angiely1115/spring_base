@@ -1,3 +1,4 @@
+/*
 package com.example.spring.spring_base.springConfig.web;
 
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
@@ -14,16 +15,17 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+*/
 /**
  * @Author: lvrongzhuan
  * @Description: spring security配置
  * @Date: 2018/9/13 15:05
  * @Version: 1.0
  * modified by:
- */
+ *//*
+
 @Configuration
 @EnableWebSecurity
-@Order(1)
 public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -36,14 +38,16 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/asserts/**").permitAll()
                 .antMatchers("/person/**").permitAll()
                 //配置不拦截监管请求
-                /*.antMatchers("/actuator/**").permitAll()
+                */
+/*.antMatchers("/actuator/**").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/images/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/v2/api-docs").permitAll()
                 .antMatchers("/configuration/ui").permitAll()
-                .antMatchers("/configuration/security").permitAll()*/
+                .antMatchers("/configuration/security").permitAll()*//*
+
                 //放最后
                 .antMatchers("/**").hasRole("admin").and().logout().logoutSuccessUrl("/user/login")
         ;
@@ -76,3 +80,4 @@ public class MySpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.userDetailsService();
     }
 }
+*/

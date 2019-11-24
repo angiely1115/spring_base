@@ -1,7 +1,6 @@
 package com.rongly.framework.autoconfiguer.elasticJob;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.validation.annotation.Validated;
 
 /**
  * Created by Hikaru on 17/9/6.

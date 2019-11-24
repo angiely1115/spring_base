@@ -17,12 +17,16 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class BeanInitDemo implements InitializingBean,DisposableBean{
-    @Autowired
     PersonService personService;
-    @Autowired
     PersonPojo person;
-    @Autowired
     private PropertiesConfig propertiesConfig;
+
+    public BeanInitDemo(PersonService personService, PersonPojo person, PropertiesConfig propertiesConfig) {
+        this.personService = personService;
+        this.person = person;
+        this.propertiesConfig = propertiesConfig;
+    }
+
     @Override
     public void destroy() throws Exception {
         System.out.println("容器销毁调用:"+this);

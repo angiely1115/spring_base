@@ -6,19 +6,77 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="rongly-spring-boot-autoConfiguer" />
-        <module name="rongly-spring-boot-starter" />
+        <module name="spring-application-sample" />
+        <module name="spring-framework-3.0.x-sample" />
+        <module name="production-ready-sample" />
+        <module name="spring-framework-2.0.x-sample" />
         <module name="spring_base" />
+        <module name="spring-boot-1.5.x-project" />
+        <module name="spring-boot-1.4.x-project" />
+        <module name="formatter-spring-boot-starter" />
+        <module name="spring-boot-1.1.x-project" />
+        <module name="spring-webmvc-3.2.x-sample" />
+        <module name="first-spring-boot-application" />
+        <module name="rongly-spring-boot-starter" />
+        <module name="rongly-spring-boot-autoConfiguer" />
+        <module name="traditional-web-sample" />
+        <module name="servlet-sample" />
+        <module name="spring-boot-1.2.x-project" />
+        <module name="shared-model" />
+        <module name="spring4-sample" />
+        <module name="spring-framework-3.2.x-sample" />
+        <module name="externalized-configuration-sample" />
+        <module name="spring-framework-5.0.x-sample" />
+        <module name="spring-boot-1.0.x-project" />
+        <module name="spring-framework-3.1.x-sample" />
+        <module name="spring-boot-1.3.x-project" />
+        <module name="spring-framework-2.5.6-sample" />
+        <module name="first-app-by-gui" />
+        <module name="auto-configuration-sample" />
+        <module name="shared-servlet31" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="auto-configuration-sample" target="1.8" />
+      <module name="externalized-configuration-sample" target="1.8" />
+      <module name="first-app-by-gui" target="1.8" />
+      <module name="first-spring-boot-application" target="1.8" />
+      <module name="formatter-spring-boot-starter" target="1.8" />
+      <module name="production-ready-sample" target="1.8" />
       <module name="rongly-spring-boot-autoConfiguer" target="1.8" />
       <module name="rongly-spring-boot-starter" target="1.5" />
+      <module name="servlet-sample" target="1.8" />
+      <module name="shared-libraries" target="1.8" />
+      <module name="shared-model" target="1.8" />
+      <module name="shared-servlet31" target="1.8" />
+      <module name="spring-application-sample" target="1.8" />
+      <module name="spring-boot-1.0.x-project" target="1.8" />
+      <module name="spring-boot-1.1.x-project" target="1.8" />
+      <module name="spring-boot-1.2.x-project" target="1.8" />
+      <module name="spring-boot-1.3.x-project" target="1.8" />
+      <module name="spring-boot-1.4.x-project" target="1.8" />
+      <module name="spring-boot-1.5.x-project" target="1.8" />
+      <module name="spring-boot-1.x-samples" target="1.8" />
+      <module name="spring-boot-2.0-samples" target="1.8" />
+      <module name="spring-boot-samples" target="1.8" />
+      <module name="spring-framework-2.0.x-sample" target="1.8" />
+      <module name="spring-framework-2.5.6-sample" target="1.8" />
+      <module name="spring-framework-3.0.x-sample" target="1.8" />
+      <module name="spring-framework-3.1.x-sample" target="1.8" />
+      <module name="spring-framework-3.2.x-sample" target="1.8" />
+      <module name="spring-framework-5.0.x-sample" target="1.8" />
+      <module name="spring-framework-samples" target="1.8" />
+      <module name="spring-webmvc-3.2.x-sample" target="1.8" />
+      <module name="spring4-sample" target="1.8" />
       <module name="spring_base" target="1.8" />
+      <module name="traditional-samples" target="1.8" />
+      <module name="traditional-web-sample" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="first-app-by-gui" options="-parameters" />
+      <module name="first-spring-boot-application" options="-parameters" />
       <module name="rongly-spring-boot-autoConfiguer" options="-parameters" />
       <module name="spring_base" options="-parameters" />
     </option>

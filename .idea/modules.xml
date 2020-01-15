@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-boot-2.0-samples/auto-configuration-sample/auto-configuration-sample.iml" filepath="$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-boot-2.0-samples/auto-configuration-sample/auto-configuration-sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../ejob-springboot/ejob-springboot.iml" filepath="$PROJECT_DIR$/../../ejob-springboot/ejob-springboot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../ejob-standalone/ejob-standalone.iml" filepath="$PROJECT_DIR$/../../ejob-standalone/ejob-standalone.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../elasticjob-spring-boot-starter/elasticjob-spring-boot-starter.iml" filepath="$PROJECT_DIR$/../../elasticjob-spring-boot-starter/elasticjob-spring-boot-starter.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-boot-2.0-samples/externalized-configuration-sample/externalized-configuration-sample.iml" filepath="$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-boot-2.0-samples/externalized-configuration-sample/externalized-configuration-sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-boot-2.0-samples/first-app-by-gui/first-app-by-gui.iml" filepath="$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-boot-2.0-samples/first-app-by-gui/first-app-by-gui.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-boot-2.0-samples/first-spring-boot-application/first-spring-boot-application.iml" filepath="$PROJECT_DIR$/../../thinking-in-spring-boot-samples/spring-boot-2.0-samples/first-spring-boot-application/first-spring-boot-application.iml" />

@@ -7,6 +7,7 @@ import com.example.spring.spring_base.demo.aop.TransactionAopDemo;
 import com.example.spring.spring_base.demo.pojo.PersonPojo;
 import com.example.spring.spring_base.demo.utils.PersonFactoryBean;
 import com.example.spring.spring_base.springConfig.*;
+import com.example.spring.spring_base.springConfig.circular.CircularDemoConfig;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -133,5 +134,10 @@ public class SpringBaseTest {
     @Test
     public void helloJVM01(){
         System.out.println("jvm类加载情况参数配置 -verbose:class");
+    }
+
+    @Test
+    public void circularTest01(){
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(CircularDemoConfig.class);
     }
 }

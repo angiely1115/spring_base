@@ -9,38 +9,44 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="spring-application-sample" />
-        <module name="spring-framework-3.0.x-sample" />
-        <module name="production-ready-sample" />
-        <module name="spring-framework-2.0.x-sample" />
-        <module name="spring_base" />
-        <module name="spring-boot-1.5.x-project" />
-        <module name="spring-framework-2.5.6-sample" />
         <module name="spring-boot-1.4.x-project" />
-        <module name="formatter-spring-boot-starter" />
-        <module name="spring-webmvc-3.2.x-sample" />
-        <module name="first-spring-boot-application" />
-        <module name="rongly-spring-boot-starter" />
-        <module name="rongly-spring-boot-autoConfiguer" />
-        <module name="traditional-web-sample" />
-        <module name="servlet-sample" />
-        <module name="spring-boot-1.2.x-project" />
-        <module name="shared-model" />
-        <module name="spring-boot-1.0.x-project" />
         <module name="spring-framework-3.2.x-sample" />
+        <module name="servlet-sample" />
+        <module name="spring-framework-2.0.x-sample" />
+        <module name="shared-servlet31" />
+        <module name="spring-framework-3.1.x-sample" />
+        <module name="shared-model" />
+        <module name="traditional-web-sample" />
+        <module name="spring-webmvc-3.2.x-sample" />
+        <module name="auto-configuration-sample" />
+        <module name="spring-boot-1.2.x-project" />
+        <module name="rongly-spring-boot-autoConfiguer" />
+        <module name="elasticjob-spring-boot-starter" />
+        <module name="ejob-standalone" />
+        <module name="spring-boot-1.0.x-project" />
+        <module name="spring4-sample" />
+        <module name="first-spring-boot-application" />
+        <module name="spring-framework-2.5.6-sample" />
+        <module name="ejob-springboot" />
+        <module name="spring-framework-3.0.x-sample" />
+        <module name="spring-boot-1.3.x-project" />
         <module name="externalized-configuration-sample" />
         <module name="spring-framework-5.0.x-sample" />
+        <module name="spring-application-sample" />
+        <module name="formatter-spring-boot-starter" />
+        <module name="spring-boot-1.5.x-project" />
         <module name="spring-boot-1.1.x-project" />
-        <module name="spring-framework-3.1.x-sample" />
-        <module name="spring-boot-1.3.x-project" />
-        <module name="spring4-sample" />
+        <module name="rongly-spring-boot-starter" />
+        <module name="spring_base" />
+        <module name="production-ready-sample" />
         <module name="first-app-by-gui" />
-        <module name="auto-configuration-sample" />
-        <module name="shared-servlet31" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="auto-configuration-sample" target="1.8" />
+      <module name="ejob-springboot" target="1.8" />
+      <module name="ejob-standalone" target="1.5" />
+      <module name="elasticjob-spring-boot-starter" target="1.7" />
       <module name="externalized-configuration-sample" target="1.8" />
       <module name="first-app-by-gui" target="1.8" />
       <module name="first-spring-boot-application" target="1.8" />
@@ -78,6 +84,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ejob-springboot" options="-parameters" />
       <module name="first-app-by-gui" options="-parameters" />
       <module name="first-spring-boot-application" options="-parameters" />
       <module name="rongly-spring-boot-autoConfiguer" options="-parameters" />
